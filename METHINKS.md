@@ -33,9 +33,20 @@ classes within these factories for conceptual clarity...
 * When considering factories, a tricky issue arose:
 * Who is responsible for discount logic?  How is this introduced?
  * a discount engine that injects a discount function on basket creation
-* This led to a function chain for basket creation - so wrap in a Facade...
+* This led to a function chain for basket creation - so wrap in a Facade - see the
+[result](https://github.com/numical/shoppingbasket/tree/discovery-testing-02-basket-creation-facade)
 
 ## Discover Relationships
 * So now time to explore the iteraction between these core concerns
-* Time to switch discovery tests to more like user-story-driven acceptance tests
+* In fact these are fairly self-evident now.
+* In a more complicated problem we would continue with discovery tests to drive out any subtlties
+etc.
+* But right now, it is probably more productive to switch to an approach where instead of mocks we
+use top-down tests to write the production code - the classic red-green-refactor TDD approach
+* This alas, will be more difficult to show with git snapshots.
 
+## Add an item
+* The simplest use case - will drive out what an 'item' actually is and how it is used.
+* It will be a simple value object - a hash of values.
+* Currently concentrate on quantity - price comes later.
+* See ...

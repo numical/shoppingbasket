@@ -12,8 +12,24 @@ Additionally, we must be able to calculate the total of the shopping basket acco
 
 For more on the thinking behind the development see [methinks](METHINKS.md).
 
-## Licence
 
+## Installation
+You will need node v6+ installed:
+```shell
+git clone https://github.com/numical/shoppingbasket.git
+cd shoppingbasket
+npm i
+npm test
+```
+
+The last command will write to console the full test suite.
+
+Note that the a `npm run debug` option is available.  For this to run you need:
+* no later than node v6.3.1 (due to [this](http://github.com/node-inspector/node-inspector/issues/907) bug)
+* a global install of [`node-inspector`](https://www.npmjs.com/package/node-inspector)
+
+
+## Licence
 The MIT Licence (MIT)
 
 Copyright (c) 2016 Incremental Ltd.
