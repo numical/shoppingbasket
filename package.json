@@ -24,6 +24,7 @@
     "jasmine": "^2.5.2",
     "jasmine-spec-reporter": "^2.7.0",
     "jasmine2-custom-message": "^0.8.2",
-    "semistandard": "^9.0.0"
+    "semistandard": "^9.0.0",
+    "testdouble": "^1.7.0"
   }
 }

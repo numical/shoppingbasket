@@ -10,6 +10,8 @@ Additionally, we must be able to calculate the total of the shopping basket acco
 * 10% off on totals greater than £20 (after bogof) 
 * 2% off on total (after all other discounts) for customers with loyalty cards. 
 
+For more on the thinking behind the development see [methinks](METHINKS.md).
+
 ## Licence
 
 The MIT Licence (MIT)
