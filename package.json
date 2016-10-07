@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "pretest": "semistandard",
-    "test": "jasmine"
+    "test": "jasmine",
+    "debug": "node-debug jasmine"
   },
   "repository": {
     "type": "git",
@@ -14,6 +15,9 @@
   "keywords": [
     "es6"
   ],
+  "engines" : { 
+    "node": "=>6"
+  },
   "author": "Mike Evans (mike.evans@numical.com)",
   "license": "MIT",
   "bugs": {
