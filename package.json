@@ -1,0 +1,29 @@
+{
+  "name": "shoppingbasket",
+  "version": "0.0.1",
+  "description": "Example Development",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "semistandard",
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/numical/shoppingbasket.git"
+  },
+  "keywords": [
+    "es6"
+  ],
+  "author": "Mike Evans (mike.evans@numical.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/numical/shoppingbasket/issues"
+  },
+  "homepage": "https://github.com/numical/shoppingbasket#readme",
+  "devDependencies": {
+    "jasmine": "^2.5.2",
+    "jasmine-spec-reporter": "^2.7.0",
+    "jasmine2-custom-message": "^0.8.2",
+    "semistandard": "^9.0.0"
+  }
+}
