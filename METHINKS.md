@@ -69,11 +69,15 @@ arguments except for barcode uniqueness.
      pence!) is deemed sufficient;
  * All calculations will rounded down to nearest penny at each stage; (this is not a bank but best be
      explicit);
- * From the initial discovery testing, we have decided that the discount engine must be responsible
-for all discount calculations; this includes knowledge of BOGOF items;
- * For convenience of both the runtime and testing, thr shopping basket will return the total price
+ * For convenience of both the runtime and testing, the shopping basket will return the total price
  on each change.
-* So...
+* So first, [tests without any discounts
+applied](https://github.com/numical/shoppingbasket/tree/acceptance-testing-04-basic-price-calculation)
 
+## Discounts
+* From the initial discovery testing, we have decided that the discount engine must be responsible
+for all discount calculations; this includes knowledge of BOGOF items;
+* This offers more flexibility in applying future types of discounts than adding discounting concerns to the item catalogue.
+* So ...
 
 

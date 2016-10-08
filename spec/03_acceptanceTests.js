@@ -3,6 +3,7 @@
 
 const ShoppingBasket = require('../lib/ShoppingBasket.js');
 const ItemCatalogue = require('../lib/ItemCatalogue.js');
+const DiscountEngine = require('../lib/DiscountEngine.js');
 
 const shreddies = ItemCatalogue.create(123, 'Shreddies 500g', 239);
 const milk = ItemCatalogue.create(456, 'Milk 2lt', 99);
@@ -76,6 +77,9 @@ describe('Acceptance Tests', () => {
     });
   });
   describe('Use Case 3: Explicit Price Scenarios', () => {
+    beforeEach(() => {
+      DiscountEngine.reset();
+    });
     it('Empty basket has zero price', () => {
       expect(subject.price()).toEqual(0);
     });
@@ -83,6 +87,39 @@ describe('Acceptance Tests', () => {
       subject.add(shreddies, 4);
       const price = subject.add(milk, 3);
       expect(subject.price()).toEqual(price);
+    });
+    it('BOGOF works for second item added', () => {
+      DiscountEngine.addBOGOF(shreddies.barcode);
+      let price = subject.add(shreddies);
+      expect(price).toEqual(239);
+      price = subject.add(shreddies);
+      expect(price).toEqual(239);
+    });
+    it('BOGOF works for every second item added', () => {
+      DiscountEngine.addBOGOF(shreddies.barcode);
+      let price = subject.add(shreddies);
+      expect(price).toEqual(239); // 1 shreddies
+      price = subject.add(shreddies);
+      expect(price).toEqual(239); // 2 shreddies
+      price = subject.add(shreddies);
+      expect(price).toEqual(239 * 2); // 3 shreddies
+      price = subject.add(shreddies);
+      expect(price).toEqual(239 * 2); // 4 shreddies
+      price = subject.add(shreddies);
+      expect(price).toEqual(239 * 3); // 5 shreddies
+      price = subject.add(shreddies);
+      expect(price).toEqual(239 * 3); // 6 shreddies
+    });
+    it('BOGOF works over multiple items', () => {
+      DiscountEngine.addBOGOF(shreddies.barcode);
+      DiscountEngine.addBOGOF(milk.barcode);
+      subject.add(shreddies, 5);
+      let price = subject.add(milk, 7);
+      expect(price).toEqual(3 * 239 + 4 * 99);
+    });
+    it('10% discount on baskets over £20', () => {
+      const price = subject.add(shreddies, 10);
+      expect(price).toEqual(239 * 10 * 0.9);
     });
   });
 });
