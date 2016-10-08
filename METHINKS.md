@@ -76,8 +76,14 @@ applied](https://github.com/numical/shoppingbasket/tree/acceptance-testing-04-ba
 
 ## Discounts
 * From the initial discovery testing, we have decided that the discount engine must be responsible
-for all discount calculations; this includes knowledge of BOGOF items;
+for all discount calculations; this includes knowledge of BOGOF (buy-one-get-one-free) items;
 * This offers more flexibility in applying future types of discounts than adding discounting concerns to the item catalogue.
-* So ...
+* So must add ability to set which items are BOGOF and implement conditional pricing function
+* [The result](https://github.com/numical/shoppingbasket/tree/acceptance-testing-05-discounts)
 
-
+## Delighting the Customer
+* We have now satisifed all requirements.
+* How can we go that little bit further?
+* As no time for a fully-fledged GUI what about the abilility for the basket to pretty-print itself?
+* This leads to the last 'demo' test suite which displays a vaguely familiar receipt format, and the latest code on
+[master](https://github.com/numical/shoppingbasket/).
