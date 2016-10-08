@@ -13,7 +13,7 @@ describe('Discovery Testing', () => {
     beforeEach(() => {
       itemCatalogue = require('../lib/ItemCatalogue.js');
       createShoppingBasket = require('../lib/BasketFactory.js');
-      generateDiscountFunction = require('../lib/DiscountEngine.js');
+      generateDiscountFunction = require('../lib/DiscountEngine.js').generateDiscountFunction;
     });
     it('client requires item catalogue', () => {
       expect(itemCatalogue).toBeDefined();
@@ -28,7 +28,7 @@ describe('Discovery Testing', () => {
   describe('Basket Facade', () => {
     beforeEach(() => {
       createShoppingBasket = td.replace('../lib/BasketFactory.js');
-      generateDiscountFunction = td.replace('../lib/DiscountEngine.js');
+      generateDiscountFunction = td.replace('../lib/DiscountEngine.js').generateDiscountFunction;
       ShoppingBasket = require('../lib/ShoppingBasket.js');
     });
     it('Facade wraps basket creation', () => {
