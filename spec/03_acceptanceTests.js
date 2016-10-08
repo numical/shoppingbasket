@@ -2,17 +2,10 @@
 'use strict';
 
 const ShoppingBasket = require('../lib/ShoppingBasket.js');
+const ItemCatalogue = require('../lib/ItemCatalogue.js');
 
-const shreddies = {
-  barcode: 123,
-  price: 239,
-  description: 'Shreddies 500g'
-};
-const milk = {
-  barcode: 456,
-  price: 99,
-  description: 'Milk 2lt'
-};
+const shreddies = ItemCatalogue.create(123, 'Shreddies 500g', 239);
+const milk = ItemCatalogue.create(456, 'Milk 2lt', 99);
 
 describe('Acceptance Tests', () => {
   describe('Use Case 1: Adding items to a basket', () => {

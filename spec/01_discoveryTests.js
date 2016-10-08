@@ -11,9 +11,9 @@ let ShoppingBasket;
 describe('Discovery Testing', () => {
   describe('Core Concerns ', () => {
     beforeEach(() => {
-      itemCatalogue = require('../lib/itemCatalogue.js');
-      createShoppingBasket = require('../lib/basketFactory.js');
-      generateDiscountFunction = require('../lib/discountEngine.js');
+      itemCatalogue = require('../lib/ItemCatalogue.js');
+      createShoppingBasket = require('../lib/BasketFactory.js');
+      generateDiscountFunction = require('../lib/DiscountEngine.js');
     });
     it('client requires item catalogue', () => {
       expect(itemCatalogue).toBeDefined();
@@ -27,8 +27,8 @@ describe('Discovery Testing', () => {
   });
   describe('Basket Facade', () => {
     beforeEach(() => {
-      createShoppingBasket = td.replace('../lib/basketFactory.js');
-      generateDiscountFunction = td.replace('../lib/discountEngine.js');
+      createShoppingBasket = td.replace('../lib/BasketFactory.js');
+      generateDiscountFunction = td.replace('../lib/DiscountEngine.js');
       ShoppingBasket = require('../lib/ShoppingBasket.js');
     });
     it('Facade wraps basket creation', () => {
