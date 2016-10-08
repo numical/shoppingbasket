@@ -24,14 +24,14 @@ describe('Demo Suite', () => {
     basket.add(pringles);
     it(basket.display(), dummyTestFn);
   });
-  describe('Student\'s weekly shop - 20% discount as over £20', () => {
+  describe('Student\'s weekly shop - 10% discount as over £20', () => {
     const basket = ShoppingBasket.create();
     basket.add(shreddies, 3);
     basket.add(milk, 2);
     basket.add(wine, 5);
     it(basket.display(), dummyTestFn);
   });
-  describe('Lucky Student\'s weekly shop - BOGOF on wine  + 20% discount as over £20:', () => {
+  describe('Lucky Student\'s weekly shop - BOGOF on wine  + 10% discount as over £20:', () => {
     DiscountEngine.addBOGOF(wine.barcode);
     const basket = ShoppingBasket.create();
     basket.add(shreddies, 3);
