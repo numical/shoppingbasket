@@ -75,8 +75,15 @@ describe('Acceptance Tests', () => {
       expect(subject.list().length).toEqual(3);
       expect(price).toEqual(239 + 2 * 99);
     });
+    it('Can empty shopping basket', () => {
+      subject.add(shreddies, 3);
+      subject.add(milk, 3);
+      subject.reset();
+      expect(subject.list().length).toEqual(0);
+      expect(subject.price()).toEqual(0);
+    });
   });
-  describe('Use Case 3: Explicit Price Scenarios', () => {
+  describe('Use Case 3: Price Scenarios & Discounts', () => {
     beforeEach(() => {
       DiscountEngine.reset();
     });
@@ -120,6 +127,31 @@ describe('Acceptance Tests', () => {
     it('10% discount on baskets over £20', () => {
       const price = subject.add(shreddies, 10);
       expect(price).toEqual(239 * 10 * 0.9);
+    });
+    it('10% discount applies on top of BOGOF', () => {
+      DiscountEngine.addBOGOF(milk.barcode);
+      let price = subject.add(milk, 40);
+      expect(price).toEqual(99 * 20);
+      price = subject.add(milk);
+      expect(price).toEqual(1871); // (99 * 20 + 99) + 0.9 rounded down
+    });
+    it('2% discount for loyal customers', () => {
+      subject = ShoppingBasket.create(true);
+      const price = subject.add(shreddies);
+      expect(price).toEqual(234); // 239 * 0.98 rounded down
+    });
+    it('2% discount applies on top of BOGOF', () => {
+      DiscountEngine.addBOGOF(shreddies.barcode);
+      subject = ShoppingBasket.create(true);
+      const price = subject.add(shreddies, 8);
+      expect(price).toEqual(936); // 239 * 4 *  0.98 rounded down
+    });
+    it('2% discount applies on top of BOGOF and 10% discount', () => {
+      DiscountEngine.addBOGOF(shreddies.barcode);
+      subject = ShoppingBasket.create(true);
+      subject.add(milk, 5);
+      const price = subject.add(shreddies, 15);
+      expect(price).toEqual(2122); // (5 * 99 + 8 * 239) * 0.9 * 0.98 each stage rounded down
     });
   });
 });
