@@ -28,6 +28,50 @@ Note that the a `npm run debug` option is available.  For this to run you need:
 * no later than node v6.3.1 (due to [this](http://github.com/node-inspector/node-inspector/issues/907) bug)
 * a global install of [`node-inspector`](https://www.npmjs.com/package/node-inspector)
 
+## Usage
+First, create items to buy using the `ItemCatalogue`.  Creation also adds them to the catalogue:
+```javascript
+const ItemCatalogue = require('./lib/ItemCatalogue');
+...
+const weetabix = ItemCatalogue.create(123456789, 'Weetabix - 500g', 199);
+const marmite = ItemCatalogue.create(987654321, 'Marmite - 250g Squeezable', 219);
+```
+
+Then create a basket using `ShoppingBasket`and add/remove items:
+```javascript
+const ShoppingBasket = require('./lib/ShoppingBasket');
+...
+const myBasket = ShoppingBasket.create();
+myBasket.add(marmite, 2);
+myBasket.add(weetabix);
+myBasket.remove(marmite);
+```
+
+The total price of the basket is returned after each change and/or can be explicitly asked for.
+The price is given in pence; use a utiltiy function to display in pounds.
+```javascript
+const displayInPounds = require('./lib/Util').displayInPounds;
+...
+const myBasket = ShoppingBasket.create();
+let price = myBasket.add(marmite, 2); // 438
+price = myBasket.add(weetabix); // 637 
+price = myBasket.remove(marmite); // 418
+price = myBasket.price();
+price = displayInPounds(price) // "£4.18"
+```
+
+Discounts are automatically applied.  However BOGOF (buy-one-get-one-free) offers must be set up on the `DiscountEngine`:
+```javascript
+const DiscountEngine = require './lib/DiscountEngine';
+...
+DiscountEngine.addBOGOF(123456789);
+...
+let price = myBasket.add(weetabix, 2); // 199
+```
+
+The full API is defined [here](API.md).
+
+
 
 ## Licence
 The MIT Licence (MIT)
